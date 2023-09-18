@@ -1,0 +1,58 @@
+{
+  
+"payments": {
+  "title": "付款",
+  "options": [
+    {
+      "title": "信用卡",
+      "icon": "https://cdn-images.mamilove.com.tw/payment_methods/credit_card@2x.png"
+    },
+    {
+      "title": "LINE Pay",
+      "icon": "https://cdn-images.mamilove.com.tw/payment_methods/line_pay@2x.png"
+    },
+    {
+      "title": "ATM",
+      "icon": "https://cdn-images.mamilove.com.tw/payment_methods/atm-v2@2x.png"
+    },
+    {
+      "title": "貨到付款",
+      "icon": "https://cdn-images.mamilove.com.tw/payment_methods/cash_on_delivery-v2@2x.png"
+    }
+  ]
+},
+"shippings": {
+  "title": "配送",
+  "options": [
+    {
+      "is_convenience_store": false,
+      "free_threshold": 999,
+      "title": "宅配",
+      "shipping_fee": 90
+    },
+    {
+      "is_convenience_store": true,
+      "free_threshold": 999,
+      "title": "全家",
+      "shipping_fee": 90
+    },
+    {
+      "is_convenience_store": true,
+      "free_threshold": 999,
+      "title": "萊爾富",
+      "shipping_fee": 90
+    },
+    {
+      "is_convenience_store": true,
+      "free_threshold": 999,
+      "title": "OK Mart",
+      "shipping_fee": 90
+    }
+  ]
+},
+"pre_order": {
+  "title": "預購",
+  "description": "付款後 14 ~ 21 個工作天"
+}
+}
+

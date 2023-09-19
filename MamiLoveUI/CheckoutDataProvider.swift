@@ -7,25 +7,26 @@
 
 import Foundation
 
-protocol CheckoutManagerDelegate: AnyObject {
-    func checkoutManager(_ manager: CheckoutManager, didGetCheckoutOptions checkoutOptions: CheckoutOptionsResponse)
-    func checkoutManager(_ manager: CheckoutManager, didFailWith error: Error)
+enum CheckoutDataProviderError: Error {
+    case fileNotFound
+    case decodingError(Error)
 }
 
-class CheckoutManager {
-    weak var delegate: CheckoutManagerDelegate?
+class CheckoutDataProvider {
 
-    func getCheckoutOptionsResponse() {
+    func getCheckoutOptionsResponse(completionHandler: @escaping (Result<CheckoutOptionsResponse, CheckoutDataProviderError>) -> Void) {
         if let url = Bundle.main.url(forResource: "MockData", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let checkoutOptions = try decoder.decode(CheckoutOptionsResponse.self, from: data)
-                delegate?.checkoutManager(self, didGetCheckoutOptions: checkoutOptions)
+                completionHandler(.success(checkoutOptions))
             } catch {
-                delegate?.checkoutManager(self, didFailWith: error)
+                completionHandler(.failure(.decodingError(error)))
             }
+        } else {
+            completionHandler(.failure(.fileNotFound))
         }
     }
 }

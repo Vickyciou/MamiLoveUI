@@ -21,17 +21,16 @@ class PaymentCell: UITableViewCell {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16),
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            subtitleLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             rightArrowButton.leadingAnchor.constraint(equalTo: subtitleLabel.trailingAnchor, constant: 8),
             rightArrowButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            rightArrowButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            rightArrowButton.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
-
+            rightArrowButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            rightArrowButton.widthAnchor.constraint(equalToConstant: 24),
+            rightArrowButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
 
@@ -51,6 +50,7 @@ extension PaymentCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.textColor = UIColor.darkGray
         return label
     }
@@ -60,6 +60,7 @@ extension PaymentCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.textColor = UIColor.darkGray
         return label
     }

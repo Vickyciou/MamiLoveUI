@@ -9,10 +9,10 @@ import UIKit
 
 class ShippingCell: UITableViewCell {
     private lazy var titleLabel: UILabel = makeTitleLabel()
-    private lazy var topShippingOptionLabel: UILabel = makeSubtitleLabel()
-    private lazy var topFreeThresholdLabel: UILabel = makeSubtitleLabel()
-    private lazy var bottomShippingOptionLabel: UILabel = makeSubtitleLabel()
-    private lazy var bottomFreeThresholdLabel: UILabel = makeSubtitleLabel()
+    private lazy var topShippingOptionLabel: UILabel = makeShippingOptionLabel()
+    private lazy var topFreeThresholdLabel: UILabel = makeFreeThresholdLabel()
+    private lazy var bottomShippingOptionLabel: UILabel = makeShippingOptionLabel()
+    private lazy var bottomFreeThresholdLabel: UILabel = makeFreeThresholdLabel()
     private lazy var rightArrowButton: UIButton = makeRightArrowButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,29 +27,26 @@ class ShippingCell: UITableViewCell {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-//            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             topShippingOptionLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16),
             topShippingOptionLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-//            topSubtitleShippingOptionLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
 
             topFreeThresholdLabel.leadingAnchor.constraint(equalTo: topShippingOptionLabel.trailingAnchor, constant: 8),
             topFreeThresholdLabel.topAnchor.constraint(equalTo: topShippingOptionLabel.topAnchor),
-//            topFreeThresholdLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
 
             bottomShippingOptionLabel.leadingAnchor.constraint(equalTo: topShippingOptionLabel.leadingAnchor),
-            bottomShippingOptionLabel.topAnchor.constraint(equalTo: topShippingOptionLabel.bottomAnchor, constant: 8),
-            bottomShippingOptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant:  -8),
+            bottomShippingOptionLabel.topAnchor.constraint(equalTo: bottomFreeThresholdLabel.topAnchor),
 
             bottomFreeThresholdLabel.leadingAnchor.constraint(equalTo: bottomShippingOptionLabel.trailingAnchor ,constant: 8),
-            bottomFreeThresholdLabel.topAnchor.constraint(equalTo: bottomShippingOptionLabel.topAnchor),
-            bottomFreeThresholdLabel.bottomAnchor.constraint(equalTo: bottomShippingOptionLabel.bottomAnchor),
+            bottomFreeThresholdLabel.topAnchor.constraint(equalTo: topFreeThresholdLabel.bottomAnchor,constant: 8),
+            bottomFreeThresholdLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
 
             rightArrowButton.leadingAnchor.constraint(equalTo: topFreeThresholdLabel.trailingAnchor, constant: 8),
+            rightArrowButton.leadingAnchor.constraint(equalTo: bottomFreeThresholdLabel.trailingAnchor, constant: 8),
             rightArrowButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            rightArrowButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            rightArrowButton.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
-
+            rightArrowButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            rightArrowButton.widthAnchor.constraint(equalToConstant: 24),
+            rightArrowButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
 
@@ -75,16 +72,27 @@ extension ShippingCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.textColor = UIColor.darkGray
         return label
     }
 
-    private func makeSubtitleLabel() -> UILabel {
+    private func makeShippingOptionLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-//        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.textColor = UIColor.darkGray
+        return label
+    }
+
+    private func makeFreeThresholdLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         label.textColor = UIColor.darkGray
         return label
     }

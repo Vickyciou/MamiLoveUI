@@ -12,7 +12,6 @@ struct CheckoutOptionsResponse: Codable {
     let payments: Payments
     let shippings: Shippings
     let preOrder: PreOrder
-
 }
 
 // MARK: - Payments
